@@ -574,7 +574,6 @@ __meta__ = {
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="material/sign"]
 frames = SubResource( 5 )
-frame = 2
 playing = true
 
 [node name="mask-sign" type="StaticBody2D" parent="material"]
@@ -601,7 +600,6 @@ scale = Vector2( 0.772252, 0.772252 )
 texture = ExtResource( 2 )
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2( 1156.77, -12.0865 )
 __meta__ = {
 "_edit_group_": true
 }
