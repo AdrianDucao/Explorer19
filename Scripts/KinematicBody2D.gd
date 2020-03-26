@@ -29,9 +29,5 @@ func _physics_process(delta):
 		if Input.is_action_pressed("ui_up"):
 			motion.y = jump
 			on_ground = false
-			#if on_ground == false:
-			#	$AnimatedSprite.play("fall-right")
-			#else:
-			#	$AnimatedSprite.play("idle1")
 	
 	move_and_slide(motion, UP)
