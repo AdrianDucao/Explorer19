@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Character/right-idle.png" type="Texture" id=1]
 [ext_resource path="res://background/mountains2.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://material/bunker-entrance.png" type="Texture" id=22]
 [ext_resource path="res://material/concrete-tile.png" type="Texture" id=23]
 [ext_resource path="res://material/steel-tile.png" type="Texture" id=24]
+[ext_resource path="res://material/2DLight.png" type="Texture" id=25]
+[ext_resource path="res://material/lamp-post.png" type="Texture" id=26]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -67,6 +69,12 @@ extents = Vector2( 25.5923, 25.3112 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.2137, 25.3267 )
 
+[sub_resource type="CanvasItemMaterial" id=7]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id=8]
+blend_mode = 1
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ],
@@ -74,6 +82,9 @@ animations = [ {
 "name": "default",
 "speed": 10.0
 } ]
+
+[sub_resource type="CanvasItemMaterial" id=9]
+blend_mode = 1
 
 [sub_resource type="SpriteFrames" id=6]
 animations = [ {
@@ -91,6 +102,21 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
+
+[node name="Light2D" type="Light2D" parent="Player"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+energy = 0.51
+
+[node name="RayCast" type="Node2D" parent="Player/Light2D"]
+
+[node name="RayCast2D" type="RayCast2D" parent="Player/Light2D/RayCast"]
+
+[node name="RayCast2D2" type="RayCast2D" parent="Player/Light2D/RayCast"]
+cast_to = Vector2( 30, 50 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="Player/Light2D/RayCast"]
+cast_to = Vector2( -30, 50 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 frames = SubResource( 1 )
@@ -1373,13 +1399,16 @@ texture = ExtResource( 10 )
 shape = SubResource( 4 )
 
 [node name="sign" type="StaticBody2D" parent="material"]
+material = SubResource( 7 )
 position = Vector2( 91.2193, 397.795 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="material/sign"]
+material = SubResource( 8 )
 frames = SubResource( 5 )
+frame = 1
 playing = true
 
 [node name="mask-sign" type="StaticBody2D" parent="material"]
@@ -1389,10 +1418,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
+[node name="Light2D" type="Light2D" parent="material/mask-sign"]
+texture = ExtResource( 25 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="material/mask-sign"]
 show_behind_parent = true
+material = SubResource( 9 )
 frames = SubResource( 6 )
-frame = 2
+frame = 5
 playing = true
 
 [node name="Bunker" type="StaticBody2D" parent="material"]
@@ -1522,6 +1555,78 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="material/secret10"]
 texture = ExtResource( 24 )
 
+[node name="LampPost" type="StaticBody2D" parent="material"]
+position = Vector2( 2123.14, 372.515 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost"]
+cast_to = Vector2( 0, 40 )
+
+[node name="LampPost4" type="StaticBody2D" parent="material"]
+position = Vector2( 707.252, 407.795 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost4"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost4"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost4"]
+cast_to = Vector2( 0, 40 )
+
+[node name="LampPost3" type="StaticBody2D" parent="material"]
+position = Vector2( 1971.13, 372.795 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost3"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost3"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost3"]
+cast_to = Vector2( 0, 40 )
+
+[node name="LampPost2" type="StaticBody2D" parent="material"]
+position = Vector2( 202.498, 387.795 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost2"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost2"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost2"]
+cast_to = Vector2( 0, 40 )
+
 [node name="Background" type="Node2D" parent="."]
 show_behind_parent = true
 
@@ -1529,6 +1634,7 @@ show_behind_parent = true
 layer = -1
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
+modulate = Color( 0.2, 0.172549, 0.172549, 1 )
 show_behind_parent = true
 __meta__ = {
 "_edit_group_": true
@@ -1543,8 +1649,9 @@ texture = ExtResource( 2 )
 [node name="ParallaxBackground2" type="ParallaxBackground" parent="Background"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground2"]
+modulate = Color( 0.2, 0.172549, 0.172549, 1 )
 show_behind_parent = true
-position = Vector2( 1156.77, -12.2343 )
+position = Vector2( 1156.77, -10.5886 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -1554,3 +1661,24 @@ show_behind_parent = true
 position = Vector2( 380.029, 277.186 )
 scale = Vector2( 0.772252, 0.772252 )
 texture = ExtResource( 2 )
+
+[node name="ParallaxBackground3" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground3"]
+modulate = Color( 0.2, 0.172549, 0.172549, 1 )
+show_behind_parent = true
+position = Vector2( 2314.46, -22.2863 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="mountains2" type="Sprite" parent="Background/ParallaxBackground3/ParallaxLayer"]
+show_behind_parent = true
+position = Vector2( 380.029, 277.186 )
+scale = Vector2( 0.772252, 0.772252 )
+texture = ExtResource( 2 )
+
+[node name="Atmosphere" type="Node2D" parent="."]
+
+[node name="Night" type="CanvasModulate" parent="Atmosphere"]
+color = Color( 0.2, 0.172549, 0.172549, 1 )
