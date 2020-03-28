@@ -29,16 +29,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
-"loop": false,
-"name": "idle1",
-"speed": 0.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "walk-left",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 14 ), ExtResource( 1 ) ],
 "loop": true,
 "name": "fall-right",
@@ -58,6 +48,16 @@ animations = [ {
 "loop": false,
 "name": "idle2",
 "speed": 0.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "idle1",
+"speed": 0.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "walk-left",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -69,13 +69,13 @@ extents = Vector2( 25.5923, 25.3112 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 24.2137, 25.3267 )
 
-[sub_resource type="CanvasItemMaterial" id=7]
+[sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=7]
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ) ],
 "loop": true,
@@ -83,10 +83,10 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="CanvasItemMaterial" id=9]
+[sub_resource type="CanvasItemMaterial" id=8]
 blend_mode = 1
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=9]
 animations = [ {
 "frames": [ ExtResource( 19 ), ExtResource( 18 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 20 ), ExtResource( 21 ) ],
 "loop": true,
@@ -1399,16 +1399,16 @@ texture = ExtResource( 10 )
 shape = SubResource( 4 )
 
 [node name="sign" type="StaticBody2D" parent="material"]
-material = SubResource( 7 )
+material = SubResource( 5 )
 position = Vector2( 91.2193, 397.795 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="material/sign"]
-material = SubResource( 8 )
-frames = SubResource( 5 )
-frame = 2
+material = SubResource( 6 )
+frames = SubResource( 7 )
+frame = 1
 playing = true
 
 [node name="mask-sign" type="StaticBody2D" parent="material"]
@@ -1423,9 +1423,9 @@ texture = ExtResource( 25 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="material/mask-sign"]
 show_behind_parent = true
-material = SubResource( 9 )
-frames = SubResource( 6 )
-frame = 2
+material = SubResource( 8 )
+frames = SubResource( 9 )
+frame = 5
 playing = true
 
 [node name="Bunker" type="StaticBody2D" parent="material"]
@@ -1573,6 +1573,43 @@ texture_scale = 5.12
 [node name="RayCast2D" type="RayCast2D" parent="material/LampPost"]
 cast_to = Vector2( 0, 40 )
 
+[node name="LampPost6" type="StaticBody2D" parent="material"]
+position = Vector2( 3090.71, 363.071 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost6"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost6"]
+position = Vector2( 0, 1 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost6"]
+cast_to = Vector2( 0, 40 )
+
+[node name="LampPost5" type="StaticBody2D" parent="material"]
+position = Vector2( 3912.59, 387.795 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="material/LampPost5"]
+texture = ExtResource( 26 )
+
+[node name="Light2D" type="Light2D" parent="material/LampPost5"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 25 )
+offset = Vector2( -180, -500 )
+texture_scale = 5.12
+
+[node name="RayCast2D" type="RayCast2D" parent="material/LampPost5"]
+cast_to = Vector2( 0, 40 )
+
 [node name="LampPost4" type="StaticBody2D" parent="material"]
 position = Vector2( 707.252, 407.795 )
 __meta__ = {
@@ -1667,12 +1704,28 @@ texture = ExtResource( 2 )
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground3"]
 modulate = Color( 0.2, 0.172549, 0.172549, 1 )
 show_behind_parent = true
-position = Vector2( 1156.77, -10.5886 )
+position = Vector2( 2311.79, -24.7075 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="mountains2" type="Sprite" parent="Background/ParallaxBackground3/ParallaxLayer"]
+show_behind_parent = true
+position = Vector2( 380.029, 277.186 )
+scale = Vector2( 0.772252, 0.772252 )
+texture = ExtResource( 2 )
+
+[node name="ParallaxBackground4" type="ParallaxBackground" parent="Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground4"]
+modulate = Color( 0.2, 0.172549, 0.172549, 1 )
+show_behind_parent = true
+position = Vector2( 3469.96, -24.7075 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="mountains2" type="Sprite" parent="Background/ParallaxBackground4/ParallaxLayer"]
 show_behind_parent = true
 position = Vector2( 380.029, 277.186 )
 scale = Vector2( 0.772252, 0.772252 )
